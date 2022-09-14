@@ -2,7 +2,7 @@
 const jwt = cargarToken();
 
 if(jwt){
-    location.replace('/mis-tareas.html');
+    location.replace('./mis-tareas.html');
 }
 
 window.addEventListener('load', function () {
