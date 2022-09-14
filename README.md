@@ -24,8 +24,8 @@ Link con la documentación de los endpoints de la API y su funcionamiento:
 - [x] FUNCIÓN 2: Realizar la petición a la API crear un nuevo usuario si completa todos los datos.
 
 ## Requerimientos funcionales en pantalla de Tareas
-- [ ] FUNCIÓN 1: Darle funcionalidad al botón de "Cerrar sesión".
-- [ ] FUNCIÓN 2: Crear un función para obtener el nombre de usuario y presentarlo en pantalla.
+- [x] FUNCIÓN 1: Darle funcionalidad al botón de "Cerrar sesión".
+- [x] FUNCIÓN 2: Crear un función para obtener el nombre de usuario y presentarlo en pantalla.
 - [ ] FUNCIÓN 3: Implementar una función para obtener el listado de tareas.
 - [ ] FUNCIÓN 4: Lograr que funcione el botón de crear nueva tarea.
 - [ ] FUNCIÓN 5: Poder renderizar en pantalla las tareas según su estado, dentro del listado que corresponda.

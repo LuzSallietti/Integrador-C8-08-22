@@ -3,14 +3,17 @@
 const jwt = cargarToken();
 
 if(!jwt) {
-  location.replace('/');
-}
+  location.replace('./index.html');
+} 
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
 
   /* ---------------- variables globales y llamado a funciones ---------------- */
-  
+  const btnCerrarSesion = document.querySelector('#closeApp');
+  const username = document.querySelector('.user-info p');
+  obtenerNombreUsuario();
+
 
 
   /* -------------------------------------------------------------------------- */
@@ -18,10 +21,8 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
 
   btnCerrarSesion.addEventListener('click', function () {
-   
-
-
-
+    localStorage.removeItem('jwt');
+    window.location.replace('./index.html');
   });
 
   /* -------------------------------------------------------------------------- */
@@ -29,10 +30,23 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
 
   function obtenerNombreUsuario() {
-   
-
-
-
+    let jwt = cargarToken();
+    const URL = 'https://ctd-todo-api.herokuapp.com/v1/users/getMe'
+    const config = {
+      method: 'GET',
+      headers: {
+          'Content-Type' : "application/json; charset=UTF-8",
+          'authorization' : jwt
+      }
+  }
+  fetch(URL, config).then( resp => {
+    return resp.json()
+  }
+  ).then (user => {
+    console.log(user);
+    username.textContent = user.firstName;
+    //el usuario está en data.firstName
+  })    
   };
 
 
