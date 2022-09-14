@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
 
             realizarLogin(config)
         } else {
-            mostrarErrores(errorContainer, [mensajeError]);
+            mostrarErrores(errorContainer, mensajeError);
         }
     });
 
@@ -55,9 +55,11 @@ window.addEventListener('load', function () {
         const { jwt } = data;
         if(jwt) {
             guardarToken(jwt);
-            location.replace('/mis-tareas.html');;
+            location.replace('./mis-tareas.html');;
+        } else {
+            mostrarErrores(errorContainer,data);
         }
-        mostrarErrores(errorContainer,[data]);
+        
        }) 
     };
 

@@ -24,6 +24,7 @@ window.addEventListener('load', function () {
             passwordRep: inputPasswordRepetida.value
         }
         const mensajeError = validarRegistro(usuario);
+        
         if(!mensajeError) { 
             const datos = {
                 firstName : usuario.nombre,
@@ -41,7 +42,7 @@ window.addEventListener('load', function () {
 
             realizarRegister(config)
         } else {
-            mostrarErrores(errorContainer,[mensajeError]);
+            mostrarErrores(errorContainer,mensajeError);
         }     
     });
 
@@ -59,14 +60,10 @@ window.addEventListener('load', function () {
             guardarToken(jwt);
             location.replace('./mis-tareas.html');;
         } else {
-            mostrarErrores(errorContainer,[data]);
+            mostrarErrores(errorContainer,data);
         }
         
-       }) 
-
-
-
-
+       })
     };
 
 

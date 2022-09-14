@@ -22,7 +22,11 @@ function validarContrasenia(contrasenia) {
 }
 
 function compararContrasenias(contrasenia_1, contrasenia_2) {
-    
+    if (contrasenia_1 !== contrasenia_2){
+        return 'Las contraseñas no coinciden';
+        
+    }
+    return '';
 }
 
 function cargarToken() {
@@ -52,19 +56,15 @@ function validarRegistro({nombre, apellido, email, password, passwordRep}){
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )) {
         return 'El formato del email es incorrecto';
-    } else if (password !== passwordRep){
-        return 'Las contraseñas no coinciden';
-    }
-
-    return '';
+    } 
+    return compararContrasenias(password, passwordRep);
+    
 }
 
-function mostrarErrores (contenedor, mensajes) {
+function mostrarErrores (contenedor, mensaje) {
     contenedor.innerHTML = '';
-    contenedor.style.opacity = 1;
-    mensajes.forEach(mensaje => {
-        let p = document.createElement('p');
-        p.textContent = `* ${mensaje}`;        
-        contenedor.appendChild(p);       
-    });
+    contenedor.style.opacity = 1;    
+    let p = document.createElement('p');
+    p.textContent = `* ${mensaje}`;        
+    contenedor.appendChild(p);      
 }
