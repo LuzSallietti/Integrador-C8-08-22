@@ -104,3 +104,11 @@ form button:hover{
 .ingresarA a:hover{
     color: var(--azul);
 }
+.error-msgs {
+    margin: 1rem 0 0 0;
+    padding: .5rem;
+    border: 1px solid purple;
+    font-size: .85rem;
+    opacity: 0;
+    transition: all 0.5s ease;
+}

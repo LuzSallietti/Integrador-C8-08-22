@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
    const inputEmail = document.querySelector('#inputEmail');
    const inputPassword = document.querySelector('#inputPassword');
    const inputPasswordRepetida = document.querySelector('#inputPasswordRepetida');
+   const errorContainer = document.querySelector('#errorMsg');
 
 
     
@@ -40,7 +41,7 @@ window.addEventListener('load', function () {
 
             realizarRegister(config)
         } else {
-            console.log('NO HACEMOS EL REGISTRO', mensajeError);
+            mostrarErrores(errorContainer,[mensajeError]);
         }     
     });
 
@@ -58,7 +59,7 @@ window.addEventListener('load', function () {
             guardarToken(jwt);
             location.replace('./mis-tareas.html');;
         } else {
-            alert(data);
+            mostrarErrores(errorContainer,[data]);
         }
         
        }) 

@@ -58,3 +58,13 @@ function validarRegistro({nombre, apellido, email, password, passwordRep}){
 
     return '';
 }
+
+function mostrarErrores (contenedor, mensajes) {
+    contenedor.innerHTML = '';
+    contenedor.style.opacity = 1;
+    mensajes.forEach(mensaje => {
+        let p = document.createElement('p');
+        p.textContent = `* ${mensaje}`;        
+        contenedor.appendChild(p);       
+    });
+}

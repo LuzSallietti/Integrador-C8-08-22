@@ -10,7 +10,9 @@ window.addEventListener('load', function () {
    const form = document.querySelector('form');
    const inputEmail = document.getElementById('inputEmail');
    const inputPassword = document.getElementById('inputPassword');
-
+   
+   const errorContainer = document.querySelector('#errorMsg');
+   console.log(errorContainer);
 
 
     /* -------------------------------------------------------------------------- */
@@ -36,7 +38,7 @@ window.addEventListener('load', function () {
 
             realizarLogin(config)
         } else {
-            console.log('NO HACEMOS EL LOGIN', mensajeError);
+            mostrarErrores(errorContainer, [mensajeError]);
         }
     });
 
@@ -55,7 +57,7 @@ window.addEventListener('load', function () {
             guardarToken(jwt);
             location.replace('/mis-tareas.html');;
         }
-        alert(data);
+        mostrarErrores(errorContainer,[data]);
        }) 
     };
 
