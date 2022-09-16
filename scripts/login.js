@@ -1,6 +1,8 @@
 /* Evaluar si hay un token */
+
 const jwt = cargarToken();
 
+// esto puede ser la funcion validarToken(jwt)
 if(jwt){
     location.replace('./mis-tareas.html');
 }
