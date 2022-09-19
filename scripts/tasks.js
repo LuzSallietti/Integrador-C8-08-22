@@ -123,18 +123,32 @@ window.addEventListener('load', function () {
   function renderizarTareas(listado) {
     listado.forEach(tarea => {
       console.log(tarea)
+      const li = document.createElement('li');
+      li.classList.add('tarea');
       if(tarea.completed){
-        let li = document.createElement('li');
-        li.setAttribute('class', 'tarea');        
-        li.textContent = tarea.description;        
-        //faltan elementos y clases --> icono y btn
+        li.innerHTML = `
+        <div class="hecha">
+          <i class="fa-regular fa-circle-check"></i>
+          </div>
+          <div class="descripcion">
+            <p class="nombre">${tarea.description}</p>
+            <div class="cambios-estados">
+            <button class="change completa" id="${tarea.id}" ><i class="fa-solid fa-rotate-left"></i></button>
+            <button class="borrar" id="${tarea.id}"><i class="fa-regular fa-trash-can"></i></button>
+          </div>
+        </div>
+        `
         tareasTerminadas.appendChild(li);
       } else {
-        let li = document.createElement('li');
-        li.setAttribute('class', 'tarea');
-        li.textContent = tarea.description;
-        tareasPendientes.appendChild(li);
-        
+        const fecha = new Date(tarea.createdAt);
+        li.innerHTML = `
+        <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
+        <div class="descripcion">
+          <p class="nombre">${tarea.description}</p>
+          <p class="timestamp">${fecha.toLocaleDateString()}</p>
+        </div>
+        `
+        tareasPendientes.appendChild(li)        
       }      
     });    
   };
