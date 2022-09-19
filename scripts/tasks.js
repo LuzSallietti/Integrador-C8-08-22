@@ -111,7 +111,7 @@ window.addEventListener('load', function () {
       //limpio el input del form
       nuevaTarea.value='';
       console.log(data);
-      // llamar a la funcion renderizarTareas    
+      renderizarTareas([data]);    
     })           
 
   });
@@ -139,6 +139,8 @@ window.addEventListener('load', function () {
         </div>
         `
         tareasTerminadas.appendChild(li);
+        
+        
       } else {
         const fecha = new Date(tarea.createdAt);
         li.innerHTML = `
@@ -149,18 +151,45 @@ window.addEventListener('load', function () {
         </div>
         `
         tareasPendientes.appendChild(li)        
-      }      
+      }
+           
     });    
   };
 
   /* -------------------------------------------------------------------------- */
   /*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
   /* -------------------------------------------------------------------------- */
-  function botonesCambioEstado() {
-    
-    
+  function cambiarEstado(nodo, tarea) {
+    const URL = `https://ctd-todo-api.herokuapp.com/v1/tasks/${nodo.id}`
+    const data = {
+        completed: !tarea.completed,
+        description: tarea.description,
+    }
+    const config = {
+      method: 'PUT',
+      headers: {
+        authorization: jwt,
+        'Content-Type': "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(data),
+    }
+    fetch(URL,config).then( res => {return res.json()}).then(data => {
+      const { id } = data;
+      const nodo = document.getElementById(id).parentElement;
+      console.log(nodo);
+      nodo.remove();
+      console.log("lo removí?");
+      renderizarTareas([data])
+    })
+   
+  }
 
-
+  function botonesCambioEstado(listado) {
+    
+    const botones = document.querySelectorAll('.change');
+    botones.forEach( boton => {
+      boton.addEventListener('click', e => cambiarEstado(e.target, listado.find( tarea => tarea.id == e.target.id)))
+    })
 
   }
 
